@@ -6,6 +6,9 @@ replace github.com/creasty/defaults => github.com/signalfx/defaults v1.2.2-0.201
 
 replace git.apache.org/thrift.git => github.com/apache/thrift v0.0.0-20180902110319-2566ecd5d999
 
+// Remove once we get https://github.com/prometheus/procfs/pull/243 merged in.
+replace github.com/prometheus/procfs => github.com/signalfx/procfs v0.0.0-20191202183556-90d5c751f845
+
 require (
 	cloud.google.com/go v0.35.1 // indirect
 	collectd.org v0.3.0 // indirect
@@ -127,6 +130,7 @@ require (
 	github.com/pquerna/otp v1.1.0 // indirect
 	github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
 	github.com/prometheus/common v0.2.1-0.20190321124555-1ab4d74fc899
+	github.com/prometheus/procfs v0.0.0-20190319124303-40f3c57fb198
 	github.com/samuel/go-zookeeper v0.0.0-20180130194729-c4fab1ac1bec
 	github.com/shirou/gopsutil v2.18.12+incompatible
 	github.com/signalfx/com_signalfx_metrics_protobuf v0.0.0-20190222193949-1fb69526e884
@@ -147,7 +151,7 @@ require (
 	github.com/x-cray/logrus-prefixed-formatter v0.5.2
 	go.etcd.io/etcd v0.0.0-20190321122103-41f7142ff986
 	golang.org/x/crypto v0.0.0-20191107222254-f4817d981bb6 // indirect
-	golang.org/x/sync v0.0.0-20190423024810-112230192c58
+	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
 	golang.org/x/sys v0.0.0-20191105231009-c1f44814a5cd
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/fatih/set.v0 v0.1.0
