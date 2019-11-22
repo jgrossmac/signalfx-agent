@@ -31,7 +31,16 @@ fi
 
 set -x
 if [ -n "$MARKERS" ]; then
-    $PYTEST_PATH -m "$MARKERS" $PYTEST_OPTIONS $TESTS
+    if [[ "$MARKERS" =~ integration|perf ]]; then
+        for i in $(seq 1 10); do
+            $PYTEST_PATH -m "$MARKERS" $PYTEST_OPTIONS $TESTS || \
+                $PYTEST_PATH -m "$MARKERS" --last-failed --verbose --junitxml=~/testresults/rerun-results.xml --html=~/testresults/rerun-results.html --self-contained-html $TESTS; exit $?
+        done
+    else
+        $PYTEST_PATH -m "$MARKERS" $PYTEST_OPTIONS $TESTS || \
+            $PYTEST_PATH -m "$MARKERS" --last-failed --verbose --junitxml=~/testresults/rerun-results.xml --html=~/testresults/rerun-results.html --self-contained-html $TESTS; exit $?
+    fi
 else
-    $PYTEST_PATH $PYTEST_OPTIONS $TESTS
+    $PYTEST_PATH $PYTEST_OPTIONS $TESTS || \
+        $PYTEST_PATH --last-failed --verbose --junitxml=~/testresults/rerun-results.xml --html=~/testresults/rerun-results.html --self-contained-html $TESTS
 fi

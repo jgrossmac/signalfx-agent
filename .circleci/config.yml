@@ -357,7 +357,6 @@ jobs:
       - run: .circleci/scripts/setup-perf-tests.sh
       - run_pytest:
           markers: perf_test
-          pytest_options: -n1
 
   k8s_integration_tests:
     executor: machine_image
