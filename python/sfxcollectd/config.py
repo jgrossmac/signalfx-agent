@@ -32,7 +32,7 @@ class Config(object):  # pylint: disable=too-few-public-methods
 
         conf = cls(root=None)
         conf.children = []
-        for key, val in monitor_plugin_config.items():
+        for key, val in list(monitor_plugin_config.items()):
             values = None
             children = None
             if val is None:
@@ -43,7 +43,7 @@ class Config(object):  # pylint: disable=too-few-public-methods
                     logging.debug("dropping configuration %s because its value is an empty list or tuple", key)
                     continue
                 values = val
-            elif isinstance(val, (str, unicode)):  # pylint: disable=undefined-variable
+            elif isinstance(val, str):  # pylint: disable=undefined-variable
                 if val == "":
                     logging.debug("dropping configuration %s because its value is an empty string", key)
                     continue

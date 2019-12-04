@@ -3,7 +3,6 @@ from functools import partial as p
 
 import pytest
 import requests
-
 from tests.helpers.agent import Agent
 from tests.helpers.assertions import (
     has_datapoint_with_dim,
@@ -12,7 +11,7 @@ from tests.helpers.assertions import (
     http_status,
 )
 from tests.helpers.metadata import Metadata
-from tests.helpers.util import run_service, container_ip, wait_for
+from tests.helpers.util import container_ip, run_service, wait_for
 from tests.helpers.verify import verify
 
 pytestmark = [
