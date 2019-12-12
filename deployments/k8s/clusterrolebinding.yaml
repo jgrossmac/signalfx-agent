@@ -11,6 +11,21 @@ roleRef:
   kind: ClusterRole
   name: signalfx-agent
 subjects:
-- kind: ServiceAccount
-  name: signalfx-agent
-  namespace: MY_AGENT_NAMESPACE
+  - kind: ServiceAccount
+    name: signalfx-agent
+    namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: signalfx-agent-privileged
+  labels:
+    app: signalfx-agent
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: psp:privileged
+subjects:
+  - kind: ServiceAccount
+    name: signalfx-agent
+    namespace: default

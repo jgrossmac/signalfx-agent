@@ -10,20 +10,21 @@ data:
   agent.yaml: |
     signalFxAccessToken: ${SFX_ACCESS_TOKEN}
 
-    signalFxRealm: us0
+    signalFxRealm: us1
 
     etcPath: /hostfs/etc
     procPath: /hostfs/proc
 
     intervalSeconds: 10
 
-    cluster: MY-CLUSTER
+    cluster: TEST-DEFINITE-SLUG-CENTRALUS
+    hostname: ${MY_NODE_NAME}
 
     logging:
       level: info
 
     globalDimensions:
-      kubernetes_cluster: MY-CLUSTER
+      kubernetes_cluster: TEST-DEFINITE-SLUG-CENTRALUS
 
     sendMachineID: false
 
@@ -48,14 +49,7 @@ data:
     - type: kubelet-stats
       kubeletAPI:
         authType: serviceAccount
-      datapointsToExclude:
-      - dimensions:
-          container_image:
-           - '*pause-amd64*'
-           - 'k8s.gcr.io/pause*'
-        metricNames:
-          - '*'
-          - '!*network*'
+        url: https://${MY_NODE_NAME}:10250
 
     # Collects k8s cluster-level metrics
     - type: kubernetes-cluster
